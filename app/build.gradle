@@ -48,9 +48,19 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlin_coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlin_coroutines}"
 
-    //PermissionX
+    // PermissionX
     implementation 'com.permissionx.guolindev:permissionx:1.4.0'
 
+    // RecycleView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // LiveData
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+
+    // Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
 
 
     testImplementation 'junit:junit:4.+'
