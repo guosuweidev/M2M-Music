@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+//    id 'kotlin-android-extensions'    kotlin1.4已弃用
 }
 
 android {
@@ -30,6 +30,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    // 添加ViewBinding，用于替代KAE
+    buildFeatures {
+        viewBinding true
     }
 
 }
