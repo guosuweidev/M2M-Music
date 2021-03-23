@@ -17,7 +17,6 @@ class M2MMusicApplication : Application() {
         lateinit var context: Context
     }
 
-
     override fun onCreate() {
         super.onCreate()
         context = applicationContext

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">M2M Music</string>
+    <string name="main_tab">首页</string>
+    <string name="my_tab">我的</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+    <string name="DarkMode">夜间模式</string>
+    <string name="TimeToClose">定时关闭</string>
+    <string name="About">关于</string>
+    <string name="Logout">退出登录</string>
+    <string name="Exit">关闭程序</string>
 </resources>

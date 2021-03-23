@@ -2,6 +2,10 @@ package com.m2mmusic.android.utils
 
 import android.util.Log
 
+/**
+ * Created by 小小苏 at 2021/3/21
+ * 日志工具
+ */
 object LogUtil {
 
     private const val VERBOSE = 1

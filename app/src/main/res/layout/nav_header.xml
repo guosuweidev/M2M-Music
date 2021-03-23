@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:padding="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/default_avatar"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NickName"
+        android:textSize="14sp"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/lv" />
+
+    <TextView
+        android:id="@+id/lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L"
+        android:textSize="14sp"
+        android:layout_toLeftOf="@id/point"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="v."
+        android:textSize="14sp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/point" />
+
+
+</RelativeLayout>

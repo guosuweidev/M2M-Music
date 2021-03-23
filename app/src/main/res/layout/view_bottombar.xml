@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_container"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    app:layout_constraintBottom_toBottomOf="parent">
+
+    <ImageButton
+        android:id="@+id/tab_main_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="65dp"
+        android:background="@drawable/tab_main_btn_selected"
+        android:clickable="false"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tab_my_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tab_main_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:clickable="false"
+        android:text="@string/main_tab"
+        android:textColor="@color/tab_main_tv_selected"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@id/tab_main_btn"
+        app:layout_constraintStart_toStartOf="@id/tab_main_btn"
+        app:layout_constraintTop_toBottomOf="@id/tab_main_btn" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cover_container"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/default_cover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/tab_my_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="65dp"
+        android:background="@drawable/tab_my_btn_selected"
+        android:clickable="false"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toEndOf="@+id/tab_main_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tab_my_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:clickable="false"
+        android:text="@string/my_tab"
+        android:textColor="@color/tab_main_tv_selected"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@id/tab_my_btn"
+        app:layout_constraintStart_toStartOf="@id/tab_my_btn"
+        app:layout_constraintTop_toBottomOf="@id/tab_my_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
