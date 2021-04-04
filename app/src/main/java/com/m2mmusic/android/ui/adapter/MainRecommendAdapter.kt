@@ -7,12 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.m2mmusic.android.databinding.ItemRecommendListBinding
-import com.m2mmusic.android.logic.model.Result
+import com.m2mmusic.android.logic.model.RecommendPlaylistsResponse.Result
 
 class MainRecommendAdapter(private val listBean: List<Result>) :
-    RecyclerView.Adapter<MainRecommendAdapter.PagerViewHolder>() {
+    RecyclerView.Adapter<MainRecommendAdapter.ViewHolder>() {
 
-    inner class PagerViewHolder(binding: ItemRecommendListBinding) :
+    private lateinit var mListener: OnItemClickListener
+
+    inner class ViewHolder(binding: ItemRecommendListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val coverImage: ImageView = binding.cover
         val title: TextView = binding.title
@@ -21,30 +23,35 @@ class MainRecommendAdapter(private val listBean: List<Result>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PagerViewHolder {
+    ): ViewHolder {
         val binding =
             ItemRecommendListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val viewHolder = PagerViewHolder(binding)
-        viewHolder.itemView.setOnClickListener {
-            // 启动ListDetailActivity显示歌单内容
-//            startListDetailActivity(this, it.tag)
-        }
+        val viewHolder = ViewHolder(binding)
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (listBean.isNotEmpty()) {
             val playList = listBean[position]
             Glide.with(holder.itemView)
-                .load(playList.picUrl)
+                .load(playList.picUrl + "?param=350y350")
                 .into(holder.coverImage)
             holder.title.text = playList.name
-            // 将歌单id存入view的tag中，当item被点击时将数据传给ListDetailActivity
-            holder.itemView.tag = playList.id
+            holder.itemView.setOnClickListener {
+                mListener.onRecommendItemClick(position)
+            }
         }
 
     }
 
     override fun getItemCount() = listBean.size
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.mListener = listener
+    }
+
+    interface OnItemClickListener {
+        fun onRecommendItemClick(position: Int)
+    }
 
 }

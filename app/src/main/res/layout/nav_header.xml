@@ -1,52 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_header"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/nav_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:src="@drawable/default_avatar"
-        android:layout_centerInParent="true" />
+        android:layout_marginStart="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NickName"
-        android:textSize="14sp"
-        android:layout_centerInParent="true"
-        android:layout_above="@+id/lv" />
+        android:text="点击头像登录"
+        android:fontFamily="@font/zhuzia_sleek"
+        android:textSize="17sp"
+        android:layout_above="@+id/lv"
+        android:layout_marginStart="@dimen/dp_16"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"/>
 
     <TextView
         android:id="@+id/lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="L"
-        android:textSize="14sp"
-        android:layout_toLeftOf="@id/point"
-        android:layout_alignParentBottom="true" />
+        android:fontFamily="@font/zhuzia_sleek"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/nickname"
+        app:layout_constraintTop_toBottomOf="@id/nickname"/>
 
     <TextView
         android:id="@+id/point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="v."
-        android:textSize="14sp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true" />
+        android:fontFamily="@font/zhuzia_sleek"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/lv"
+        app:layout_constraintStart_toEndOf="@id/lv"
+        app:layout_constraintTop_toBottomOf="@id/nickname"/>
 
     <TextView
         android:id="@+id/level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="14sp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/point" />
+        android:fontFamily="@font/zhuzia_sleek"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/lv"
+        app:layout_constraintStart_toEndOf="@id/point"
+        app:layout_constraintTop_toBottomOf="@id/nickname"/>
 
+    <TextView
+        android:id="@+id/vip"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="wrap_content"
+        android:text="VIP"
+        android:textColor="#e21324"
+        android:fontFamily="@font/zhuzia_sleek"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_marginStart="@dimen/dp_16"
+        app:layout_constraintBaseline_toBaselineOf="@id/lv"
+        app:layout_constraintStart_toEndOf="@id/level"
+        app:layout_constraintTop_toBottomOf="@id/nickname" />
 
-</RelativeLayout>
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/level_progress"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:max="100"
+        app:layout_constraintStart_toStartOf="@id/nickname"
+        app:layout_constraintTop_toBottomOf="@id/lv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/music_list_head"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipChildren="false" >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Theme.M2MMusic"
+            app:contentScrim="?android:colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/coverBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+
+            <ImageView
+                android:id="@+id/coverForeground"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="@dimen/dp_20" />
+
+            <ImageView
+                android:id="@+id/playCount_icon"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="158dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/ic_headset" />
+
+            <TextView
+                android:id="@+id/playCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="175dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/zhuzia_sleek"
+                android:text=""
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/publishTime_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发行时间："
+                android:textSize="12sp"
+                android:fontFamily="@font/zhuzia_sleek"
+                android:singleLine="true"
+                android:visibility="gone"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="158dp" />
+
+            <TextView
+                android:id="@+id/publishTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="12sp"
+                android:fontFamily="@font/zhuzia_sleek"
+                android:singleLine="true"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="222dp" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/creatorAvatar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="158dp"
+                android:layout_marginTop="40dp" />
+
+            <TextView
+                android:id="@+id/creatorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="195dp"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/zhuzia_sleek"
+                android:singleLine="true"
+                android:text=""
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/musicListToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/song_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="共 0 首"
+                android:fontFamily="@font/zhuzia_sleek"
+                android:singleLine="true"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_8" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/musicList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/dp_70"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_favorite_border"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="bottom|end" />
+
+    <include
+        android:id="@+id/bottom_container"
+        layout="@layout/view_bottom_control_bar" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

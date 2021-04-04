@@ -1,13 +1,594 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.MyFragment">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="?attr/actionBarSize"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
+    <com.m2mmusic.android.ui.custom.FixDragLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="MyFragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/my_user_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_8"
+                    android:elevation="@dimen/dp_8"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/my_user_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp">
+
+                        <ImageView
+                            android:id="@+id/my_user_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fitsSystemWindows="true"
+                            android:scaleType="centerCrop" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/avatar"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_marginStart="@dimen/dp_24"
+                            android:src="@drawable/default_avatar"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/lv"
+                            android:layout_marginStart="@dimen/dp_16"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:text="点击头像登录"
+                            android:textSize="17sp"
+                            app:layout_constraintStart_toEndOf="@id/avatar"
+                            app:layout_constraintTop_toTopOf="@id/avatar" />
+
+                        <TextView
+                            android:id="@+id/lv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:text="L"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="@id/nickname"
+                            app:layout_constraintTop_toBottomOf="@id/nickname" />
+
+                        <TextView
+                            android:id="@+id/point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:text="v."
+                            android:textSize="12sp"
+                            app:layout_constraintBaseline_toBaselineOf="@id/lv"
+                            app:layout_constraintStart_toEndOf="@id/lv"
+                            app:layout_constraintTop_toBottomOf="@id/nickname" />
+
+                        <TextView
+                            android:id="@+id/level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:text="0"
+                            android:textSize="12sp"
+                            app:layout_constraintBaseline_toBaselineOf="@id/lv"
+                            app:layout_constraintStart_toEndOf="@id/point"
+                            app:layout_constraintTop_toBottomOf="@id/nickname" />
+
+                        <TextView
+                            android:id="@+id/vip"
+                            android:layout_width="@dimen/dp_30"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_16"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:text="VIP"
+                            android:textColor="#e21324"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+                            app:layout_constraintBaseline_toBaselineOf="@id/lv"
+                            app:layout_constraintStart_toEndOf="@id/level"
+                            app:layout_constraintTop_toBottomOf="@id/nickname" />
+
+                        <androidx.core.widget.ContentLoadingProgressBar
+                            android:id="@+id/level_progress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="@dimen/dp_180"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            app:layout_constraintStart_toStartOf="@id/nickname"
+                            app:layout_constraintTop_toBottomOf="@id/lv" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/my_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:fontFamily="@font/zhuzia_sleek"
+                    android:text="我的音乐"
+                    android:textColor="@color/default_btn_text"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/my_like_music"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/my_user_card" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/my_like_music"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_88"
+                    android:layout_margin="8dp"
+                    android:elevation="@dimen/dp_16"
+                    app:cardCornerRadius="@dimen/dp_16"
+                    app:layout_constraintEnd_toStartOf="@id/recent_play"
+                    app:layout_constraintHorizontal_weight="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/my_music">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="60dp"
+                            android:background="#e3c3bf"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_like_music_cover"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:id="@+id/my_like_music_second"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginStart="36dp"
+                            android:background="#e0bdb7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_like_music_cover"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:id="@+id/my_like_music_first"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:id="@+id/my_like_music_cover"
+                            android:layout_width="@dimen/dp_64"
+                            android:layout_height="@dimen/dp_64"
+                            android:background="#dab1a9"
+                            android:layout_marginStart="@dimen/dp_12"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"
+                                android:src="@drawable/ic_like"
+                                android:background="#dab1a9"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="喜欢"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/dp_24"
+                            android:layout_marginBottom="@dimen/dp_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <TextView
+                            android:id="@+id/my_like_music_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/dp_24"
+                            android:layout_marginTop="@dimen/dp_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/recent_play"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_88"
+                    android:layout_margin="8dp"
+                    android:elevation="@dimen/dp_16"
+                    app:cardCornerRadius="@dimen/dp_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="0.5"
+                    app:layout_constraintStart_toEndOf="@id/my_like_music"
+                    app:layout_constraintTop_toBottomOf="@+id/my_music">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="60dp"
+                            android:background="#dfeef1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_recent_music_cover"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:id="@+id/my_recent_music_second"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginStart="36dp"
+                            android:background="#d4e4e4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_recent_music_cover"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:id="@+id/my_recent_music_first"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:id="@+id/my_recent_music_cover"
+                            android:layout_width="@dimen/dp_64"
+                            android:layout_height="@dimen/dp_64"
+                            android:background="#b9d5ce"
+                            android:layout_marginStart="@dimen/dp_12"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"
+                                android:src="@drawable/ic_recent"
+                                android:background="#b9d5ce"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="最近"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/dp_24"
+                            android:layout_marginBottom="@dimen/dp_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <TextView
+                            android:id="@+id/my_recent_music_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/dp_24"
+                            android:layout_marginTop="@dimen/dp_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/my_cloud_music"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_88"
+                    android:layout_margin="8dp"
+                    android:elevation="@dimen/dp_16"
+                    app:cardCornerRadius="@dimen/dp_16"
+                    app:layout_constraintEnd_toStartOf="@id/my_music_record"
+                    app:layout_constraintHorizontal_weight="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/my_like_music">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="60dp"
+                            android:background="#dad9f7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_cloud_music_cover"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:id="@+id/my_cloud_music_second"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginStart="36dp"
+                            android:background="#c8c9ea"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_cloud_music_cover"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:id="@+id/my_cloud_music_first"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:id="@+id/my_cloud_music_cover"
+                            android:layout_width="@dimen/dp_64"
+                            android:layout_height="@dimen/dp_64"
+                            android:background="@color/my_cloud"
+                            android:layout_marginStart="@dimen/dp_12"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"
+                                android:src="@drawable/ic_cloud"
+                                android:background="@color/my_cloud"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="云盘"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/dp_24"
+                            android:layout_marginBottom="@dimen/dp_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <TextView
+                            android:id="@+id/my_cloud_music_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/dp_24"
+                            android:layout_marginTop="@dimen/dp_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/my_music_record"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_88"
+                    android:layout_margin="8dp"
+                    android:elevation="@dimen/dp_16"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="0.5"
+                    app:layout_constraintStart_toEndOf="@id/my_cloud_music"
+                    app:layout_constraintTop_toBottomOf="@+id/my_like_music">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:id="@+id/my_play_record_second"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="60dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_play_record_cover"
+                            app:round_corner="@dimen/dp_16"/>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:id="@+id/my_play_record_first"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginStart="36dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/my_play_record_cover"
+                            app:round_corner="@dimen/dp_16"/>
+
+                        <com.m2mmusic.android.ui.custom.RoundConstraintLayout
+                            android:id="@+id/my_play_record_cover"
+                            android:layout_width="@dimen/dp_64"
+                            android:layout_height="@dimen/dp_64"
+                            android:background="#e5d6bc"
+                            android:layout_marginStart="@dimen/dp_12"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:round_corner="@dimen/dp_16">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"
+                                android:src="@drawable/ic_assessment"
+                                android:background="#e5d6bc"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </com.m2mmusic.android.ui.custom.RoundConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="记录"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/zhuzia_sleek"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/dp_24"
+                            android:layout_marginBottom="@dimen/dp_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/my_music_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:elevation="@dimen/dp_8"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/my_cloud_music">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/title_my_music_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/my_subscribed_music_list"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_8"
+                                android:layout_marginBottom="@dimen/dp_8"
+                                android:fontFamily="@font/zhuzia_sleek"
+                                android:text="创建的歌单"
+                                android:textAlignment="center"
+                                android:textColor="@color/tab_main_new_selected"
+                                android:textSize="16sp"
+                                android:layout_weight="0.5"/>
+
+                            <TextView
+                                android:id="@+id/my_created_music_list"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_8"
+                                android:layout_marginBottom="@dimen/dp_8"
+                                android:fontFamily="@font/zhuzia_sleek"
+                                android:text="收藏的歌单"
+                                android:textAlignment="center"
+                                android:textColor="@color/tab_main_new_selected"
+                                android:textSize="16sp"
+                                android:layout_weight="0.5"/>
+
+                        </LinearLayout>
+
+                        <com.m2mmusic.android.ui.custom.NestedScrollableHost
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_8"
+                            android:layout_marginEnd="@dimen/dp_8"
+                            android:visibility="visible">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/my_music_List_recyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible" />
+
+                        </com.m2mmusic.android.ui.custom.NestedScrollableHost>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </com.m2mmusic.android.ui.custom.FixDragLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

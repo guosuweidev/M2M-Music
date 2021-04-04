@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="?attr/actionBarSize"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.fragment.MainFragment">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <com.m2mmusic.android.ui.custom.FixDragLayout
         android:layout_width="match_parent"
@@ -28,6 +26,7 @@
                     android:id="@+id/card_recommend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:elevation="@dimen/dp_8"
                     android:layout_margin="8dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/main_grid_item">
@@ -51,8 +50,10 @@
                                 android:layout_marginTop="@dimen/dp_10"
                                 android:layout_marginEnd="@dimen/dp_10"
                                 android:layout_marginBottom="@dimen/dp_10"
+                                android:fontFamily="@font/zhuzia_sleek"
                                 android:text="推荐歌单"
-                                android:textSize="14sp"
+                                android:textSize="16sp"
+                                android:textColor="@color/default_btn_text"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,6 +76,7 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/main_recommend_list"
+                                android:visibility="invisible"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -82,44 +84,13 @@
 
                     </LinearLayout>
 
-                    <!--<TextView
-                        android:id="@+id/tv_recommend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp_10"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:text="推荐歌单"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|top"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginEnd="@dimen/dp_10"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:src="@drawable/ic_chevron_right" />
-
-                    <com.m2mmusic.android.ui.custom.NestedScrollableHost
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center_horizontal"
-                        android:visibility="visible">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/main_recommend_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </com.m2mmusic.android.ui.custom.NestedScrollableHost>-->
-
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_new"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:elevation="@dimen/dp_8"
                     android:layout_margin="8dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/card_recommend">
@@ -132,7 +103,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/title_new"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp">
+                            android:layout_height="wrap_content">
 
                             <TextView
                                 android:id="@+id/tv_new_song"
@@ -142,7 +113,9 @@
                                 android:layout_marginTop="@dimen/dp_10"
                                 android:layout_marginBottom="@dimen/dp_10"
                                 android:text="新歌"
-                                android:textSize="14sp"
+                                android:fontFamily="@font/zhuzia_sleek"
+                                android:textSize="16sp"
+                                android:textColor="@color/tab_main_new_selected"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -153,7 +126,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/dp_35"
                                 android:text="新碟"
-                                android:textSize="14sp"
+                                android:fontFamily="@font/zhuzia_sleek"
+                                android:textSize="16sp"
+                                android:textColor="@color/tab_main_new_selected"
                                 app:layout_constraintBaseline_toBaselineOf="@id/tv_new_song"
                                 app:layout_constraintStart_toEndOf="@id/tv_new_song" />
 
@@ -163,7 +138,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/dp_35"
                                 android:text="数字专辑"
-                                android:textSize="14sp"
+                                android:fontFamily="@font/zhuzia_sleek"
+                                android:textSize="16sp"
+                                android:textColor="@color/tab_main_new_selected"
                                 app:layout_constraintBaseline_toBaselineOf="@id/tv_new_song"
                                 app:layout_constraintStart_toEndOf="@id/tv_new_album" />
 
@@ -172,7 +149,6 @@
                                 android:layout_height="0dp"
                                 android:layout_marginEnd="@dimen/dp_10"
                                 android:src="@drawable/ic_chevron_right"
-                                app:layout_constraintBaseline_toBaselineOf="@id/tv_new_song"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -186,34 +162,13 @@
                             android:layout_marginEnd="@dimen/dp_5"
                             android:visibility="visible">
 
-                            <androidx.viewpager2.widget.ViewPager2
-                                android:id="@+id/main_new_viewpager"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="visible" />
-
-                        </com.m2mmusic.android.ui.custom.NestedScrollableHost>
-
-
-                        <!--<LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.tabs.TabLayout
-                                android:id="@+id/tab_new"
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/main_new_list"
+                                android:visibility="invisible"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
-                            <androidx.viewpager2.widget.ViewPager2
-                                android:id="@+id/main_new_viewpager"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dp_5"
-                                android:layout_marginEnd="@dimen/dp_5"
-                                android:visibility="visible" />
-
-                        </LinearLayout>-->
+                        </com.m2mmusic.android.ui.custom.NestedScrollableHost>
 
                     </LinearLayout>
 

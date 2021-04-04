@@ -8,8 +8,35 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="ro">#0C0C0C</color>
+    <color name="ro_text">#6d6d6d</color>
+    <color name="kuro">#080808</color>
+    <color name="kuro_text">#696969</color>
+    <color name="sumi">#1C1C1C</color>
+    <color name="sumi_text">#7d7d7d</color>
+    <color name="keshizumi">#434343</color>
+    <color name="keshizumi_text">#a4a4a4</color>
+
     // 底部导航文字
-    <color name="normal_text_color">#000000</color>
-    <color name="default_btn_text">#8F8D8D</color>
+    <color name="normal_text_color">#FFcacaca</color>
+    <color name="default_btn_text">#FF757575</color>
+
+    <color name="background">#f69aaab6</color>
+    <color name="translucent">#aa000000</color>
+
+    <color name="white_10">#1AFFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="white_30">#4DFFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_60">#99FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_80">#CCFFFFFF</color>
+    <color name="white_90">#E6FFFFFF</color>
+
+    <color name="blue_float_button">#3278d1</color>
+
+    <color name="bottom_bar_dark">#303030</color>
+
+    <color name="my_cloud">#adaecd</color>
 
 </resources>

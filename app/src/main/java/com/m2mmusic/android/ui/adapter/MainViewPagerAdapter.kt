@@ -25,4 +25,5 @@ class MainViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAd
             else -> LoadingFragment.newInstance()
         }
     }
+
 }

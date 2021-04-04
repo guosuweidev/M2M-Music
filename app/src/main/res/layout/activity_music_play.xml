@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/playBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/play_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:titleTextAppearance="@style/toolbar_title_textStyle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_360"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/play_cover"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:src="@drawable/default_cover"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/play_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="来不及勇敢"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginStart="@dimen/dp_55"
+                android:fontFamily="@font/zhuzia_sleek"
+                android:singleLine="true"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/play_artists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周深"
+                android:layout_marginStart="@dimen/dp_55"
+                android:layout_marginTop="@dimen/dp_10"
+                android:fontFamily="@font/zhuzia_sleek"
+                android:singleLine="true"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/play_like"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:src="@drawable/ic_favorite_border"
+                android:layout_marginTop="@dimen/dp_80"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/play_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/play_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:fontFamily="@font/zhuzia_sleek"
+            android:layout_marginStart="@dimen/dp_30"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/play_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:fontFamily="@font/zhuzia_sleek"
+            android:layout_marginEnd="@dimen/dp_30" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/play_prv"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_60"
+            android:src="@drawable/ic_skip_previous"
+            android:layout_gravity="start" />
+
+        <ImageView
+            android:id="@+id/play_or_pause"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:src="@drawable/ic_pause"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/play_next"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginEnd="@dimen/dp_60"
+            android:src="@drawable/ic_skip_next"
+            android:layout_gravity="end"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/play_mode"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:src="@drawable/ic_repeat_list"
+            android:layout_gravity="start|center_vertical"/>
+
+        <ImageView
+            android:id="@+id/now_playing_list"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:src="@drawable/ic_menu"
+            android:layout_gravity="end|center_vertical"/>
+
+    </FrameLayout>
+
+</LinearLayout>
