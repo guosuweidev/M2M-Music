@@ -130,6 +130,12 @@ object M2MMusicNetwork {
             playlistService.getPlaylistDetailDynamic(id, timestamp).await()
 
     /**
+     * 每日推荐
+     */
+    suspend fun getDailyRecommend(timestamp: Long) =
+        playlistService.getDailyRecommend(Repository.getCookie(), timestamp).await()
+
+    /**
      * 获取搜索建议
      */
     suspend fun getSearchSuggest(keywords:String, timestamp: Long) =

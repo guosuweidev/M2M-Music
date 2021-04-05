@@ -1,9 +1,6 @@
 package com.m2mmusic.android.logic.network.service
 
-import com.m2mmusic.android.logic.model.AlbumDetailResponse
-import com.m2mmusic.android.logic.model.PlaylistDetailDynamicResponse
-import com.m2mmusic.android.logic.model.PlaylistDetailResponse
-import com.m2mmusic.android.logic.model.RecommendPlaylistsResponse
+import com.m2mmusic.android.logic.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -98,4 +95,13 @@ interface PlaylistService {
         @Query("id") id: Long,
         @Query("timestamp") timestamp: Long
     ): Call<PlaylistDetailDynamicResponse>
+
+    /**
+     * 每日推荐
+     */
+    @GET("recommend/songs")
+    fun getDailyRecommend(
+        @Query("cookie") cookie: String,
+        @Query("timestamp") timestamp: Long
+    ):Call<DailyRecommendResponse>
 }

@@ -429,6 +429,19 @@ object Repository {
     }
 
     /**
+     * 每日推荐
+     */
+    fun getDailyRecommend(timestamp: Long) = fire(Dispatchers.IO) {
+        val dailyRecommendResponse = M2MMusicNetwork.getDailyRecommend(timestamp)
+        if (dailyRecommendResponse.code == SUCCESS_CODE) {
+            val result = dailyRecommendResponse.data
+            Result.success(result)
+        } else {
+            Result.failure(RuntimeException("response code is ${dailyRecommendResponse.code}"))
+        }
+    }
+
+    /**
      * 获取搜索建议
      */
     fun getSearchSuggest(keywords: String, timestamp: Long) = fire(Dispatchers.IO) {

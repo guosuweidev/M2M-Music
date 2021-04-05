@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M2MMusic"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.activity.DailyRecommendActivity"></activity>
         <activity android:name=".ui.activity.MyLikeListActivity" />
         <activity android:name=".ui.activity.AlbumActivity" />
         <activity android:name=".ui.activity.LoginActivity" />

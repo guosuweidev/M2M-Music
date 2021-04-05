@@ -17,9 +17,7 @@ import com.m2mmusic.android.logic.model.NewResourcesResponse.Creative
 import com.m2mmusic.android.logic.model.Music
 import com.m2mmusic.android.logic.model.PlayMode
 import com.m2mmusic.android.logic.model.PlaylistEvent
-import com.m2mmusic.android.ui.activity.AlbumActivity
-import com.m2mmusic.android.ui.activity.MainActivity
-import com.m2mmusic.android.ui.activity.MusicListActivity
+import com.m2mmusic.android.ui.activity.*
 import com.m2mmusic.android.ui.adapter.MainNewAdapter
 import com.m2mmusic.android.ui.adapter.MainRecommendAdapter
 import com.m2mmusic.android.utils.*
@@ -267,29 +265,21 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
                 viewModel.getPersonalFM()
                 "私人FM启动，请稍等".showToast(context!!)
             }
-            tvFm.setOnClickListener {
-                viewModel.getPersonalFM()
-                "私人FM启动，请稍等".showToast(context!!)
-            }
             // 每日推荐
             ivDailyRecommend.setOnClickListener {
-//                viewModel.getDailyRecommend()
-            }
-            tvDailyRecommend.setOnClickListener {
-//                viewModel.getDailyRecommend()
+                if (viewModel.isLogin() == true) {
+                    viewModel.getDailyRecommend()
+                } else {
+                    "请先登录".showToast(context!!)
+                    startActivity<LoginActivity>(activity as MainActivity) {}
+                }
             }
             // 精选歌单
             ivSelectionLibrary.setOnClickListener {
                 "「精选歌单」待开发，敬请期待".showToast(context!!)
             }
-            tvSelectionLibrary.setOnClickListener {
-                "「精选歌单」待开发，敬请期待".showToast(context!!)
-            }
             // 排行榜
             ivBoard.setOnClickListener {
-                "「排行榜」待开发，敬请期待".showToast(context!!)
-            }
-            tvBoard.setOnClickListener {
                 "「排行榜」待开发，敬请期待".showToast(context!!)
             }
         }
@@ -406,6 +396,15 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
                             PlayMode.getDefault()
                         )
                     )
+                }
+            }
+        }
+        // 观察每日推荐
+        viewModel.dailyRecommend.observe(viewLifecycleOwner) {
+            val result = it.getOrNull()
+            if (result != null) {
+                startActivity<DailyRecommendActivity>(activity as MainActivity) {
+                    putExtra("daily_recommend", result)
                 }
             }
         }

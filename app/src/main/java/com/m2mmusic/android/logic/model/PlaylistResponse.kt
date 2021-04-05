@@ -8,6 +8,28 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 /**
+ * 每日推荐
+ * 需要登录
+ */
+data class DailyRecommendResponse(
+    val code: Int,
+    val data: Data
+) {
+    @Parcelize
+    data class Data(
+        val dailySongs: List<DailySong>
+    ) : Parcelable {
+        @Parcelize
+        data class DailySong(
+            val id: Long,
+            val name: String,
+            val ar: List<PlaylistDetailResponse.Playlist.Track.Ar>,
+            val al: PlaylistDetailResponse.Playlist.Track.Al
+        ) : Parcelable
+    }
+}
+
+/**
  * 获取专辑内容
  * 不需要登录
  */
@@ -127,16 +149,18 @@ data class PlaylistDetailResponse(
             val ar: List<Ar>,           // 演唱者列表（可能有多个）
             val al: Al                  // 所属专辑
         ) {
+            @Parcelize
             data class Ar(
                 val id: Long,                // 演唱者id
                 val name: String            // 演唱者名称
-            )
+            ) : Parcelable
 
+            @Parcelize
             data class Al(
                 val id: Long,                // 专辑id
                 val name: String,           // 专辑名称
                 val picUrl: String          // 专辑封面链接
-            )
+            ) : Parcelable
         }
 
         data class TrackIds(

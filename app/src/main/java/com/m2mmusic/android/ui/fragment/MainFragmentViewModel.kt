@@ -24,6 +24,7 @@ class MainFragmentViewModel() : ViewModel() {
     private val onlineMusicIdLiveData = MutableLiveData<ArrayList<Long>>()
     private val personalFMLiveData = MutableLiveData<Long>()
     private val personalFMListLiveData = MutableLiveData<ArrayList<Long>>()
+    private val dailyRecommendLiveData = MutableLiveData<Long>()
 
     // 缓存新歌、新碟、数字专辑
     val newResourcesLists = ArrayList<Creative>()
@@ -59,6 +60,11 @@ class MainFragmentViewModel() : ViewModel() {
     // 监听私人FM列表
     val personalFMList = Transformations.switchMap(personalFMListLiveData) {
         Repository.getOnlineMusic(it)
+    }
+
+    // 监听每日推荐
+    val dailyRecommend = Transformations.switchMap(dailyRecommendLiveData) {
+        Repository.getDailyRecommend(it)
     }
 
     /**
@@ -97,6 +103,15 @@ class MainFragmentViewModel() : ViewModel() {
     fun getPersonalFMList(ids:ArrayList<Long>) {
         personalFMListLiveData.value = ids
     }
+
+    /**
+     * 每日推荐
+     */
+    fun getDailyRecommend() {
+        dailyRecommendLiveData.value = TimeUtil.getTimestamp()
+    }
+
+    fun isLogin() = Repository.isLogin.value
 
     /**
      * 缓存
