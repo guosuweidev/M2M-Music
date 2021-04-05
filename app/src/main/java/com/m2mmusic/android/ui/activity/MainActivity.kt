@@ -9,12 +9,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.palette.graphics.Palette
 import androidx.viewpager2.widget.ViewPager2
+import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
@@ -29,7 +31,6 @@ import com.m2mmusic.android.ui.adapter.MainViewPagerAdapter
 import com.m2mmusic.android.ui.fragment.MainFragment
 import com.m2mmusic.android.ui.fragment.MyFragment
 import com.m2mmusic.android.utils.*
-import java.lang.Exception
 
 /**
  * Created by 小小苏
@@ -137,11 +138,12 @@ class MainActivity : BaseActivity() {
                 /*R.id.nav_night_mode -> {
                     "夜间模式".showToast(this)
                 }*/
-                R.id.nav_time_to_close -> {
+                /*R.id.nav_time_to_close -> {
                     // 定时关闭
-                }
+                }*/
                 R.id.nav_about -> {
                     // 关于
+                    startActivity<AboutActivity>(this) {}
                 }
                 R.id.nav_logout -> {
                     // 退出登录

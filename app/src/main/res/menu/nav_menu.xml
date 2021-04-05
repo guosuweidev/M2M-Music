@@ -8,10 +8,10 @@
             android:icon="@drawable/ic_search"
             android:title="@string/DarkMode" />-->
 
-        <item
+        <!--<item
             android:id="@+id/nav_time_to_close"
             android:icon="@drawable/ic_timelapse"
-            android:title="@string/TimeToClose" />
+            android:title="@string/TimeToClose" />-->
 
         <item
             android:id="@+id/nav_logout"

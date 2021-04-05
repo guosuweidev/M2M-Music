@@ -14,4 +14,5 @@
     <string name="artistsofnewsong">艺术家</string>
     <string name="widget_album">这是专辑封面</string>
     <string name="default_duration">00:00</string>
+    <string name="CancelTimeToClose">"    取消"</string>
 </resources>
