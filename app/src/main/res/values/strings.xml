@@ -15,4 +15,5 @@
     <string name="widget_album">这是专辑封面</string>
     <string name="default_duration">00:00</string>
     <string name="CancelTimeToClose">"    取消"</string>
+    <string name="splash_tips">有   空   多   听</string>
 </resources>
