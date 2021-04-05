@@ -12,6 +12,7 @@ import com.m2mmusic.android.utils.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlin.coroutines.CoroutineContext
 import kotlin.text.StringBuilder
 
@@ -39,9 +40,10 @@ object Repository {
         "user_info",
         M2MMusicApplication.context
     )
-    private var userLikeList =  ArrayList<Music>()
-//    private var userLikeListMap =  HashMap<Long, Music>()
-    private var userLikeListSet =  HashSet<Long>()
+    private var userLikeList = ArrayList<Music>()
+
+    //    private var userLikeListMap =  HashMap<Long, Music>()
+    private var userLikeListSet = HashSet<Long>()
 
     // 用于传递当前歌曲的总时长
     private val _upToDateDuration = MutableLiveData<Int>()
@@ -106,8 +108,9 @@ object Repository {
             userLikeListSet.add(music.songId)
         }
     }
+
     fun getUserLikeList() = userLikeList
-    fun canMusicBeLiked(id:Long) = userLikeListSet.contains(id)
+    fun canMusicBeLiked(id: Long) = userLikeListSet.contains(id)
 
     /**
      * 设置UpToDateDuration
@@ -200,7 +203,7 @@ object Repository {
     /**
      * 获取用户喜欢的音乐列表
      */
-    fun getUserLikeList(uid:Long, timestamp: Long) = fire(Dispatchers.IO) {
+    fun getUserLikeList(uid: Long, timestamp: Long) = fire(Dispatchers.IO) {
         val userLikeListResponse = M2MMusicNetwork.getUserLikeList(uid, timestamp)
         when (userLikeListResponse.code) {
             SUCCESS_CODE -> {
@@ -229,6 +232,61 @@ object Repository {
     }
 
     /**
+     * 私人FM
+     */
+    fun getPersonalFM() = fire(Dispatchers.IO) {
+        coroutineScope {
+            val musicList = ArrayList<Long>()
+            val timestamp = TimeUtil.getTimestamp()
+            val personalFMResponse1 = async { get3PersonalFM(timestamp) }
+            val personalFMResponse2 = async { get3PersonalFM(timestamp + 1) }
+            val personalFMResponse3 = async { get3PersonalFM(timestamp + 2) }
+            val personalFMResponse4 = async { get3PersonalFM(timestamp + 3) }
+            val personalFMResponse5 = async { get3PersonalFM(timestamp + 4) }
+            val personalFMResponse6 = async { get3PersonalFM(timestamp + 5) }
+            val personalFM1 = personalFMResponse1.await()
+            val personalFM2 = personalFMResponse2.await()
+            val personalFM3 = personalFMResponse3.await()
+            val personalFM4 = personalFMResponse4.await()
+            val personalFM5 = personalFMResponse5.await()
+            val personalFM6 = personalFMResponse6.await()
+            if (personalFM1.code == SUCCESS_CODE &&
+                personalFM2.code == SUCCESS_CODE &&
+                personalFM3.code == SUCCESS_CODE &&
+                personalFM4.code == SUCCESS_CODE &&
+                personalFM5.code == SUCCESS_CODE &&
+                personalFM6.code == SUCCESS_CODE
+            ) {
+                for (d in personalFM1.data) {
+                    musicList.add(d.id)
+                }
+                for (d in personalFM2.data) {
+                    musicList.add(d.id)
+                }
+                for (d in personalFM3.data) {
+                    musicList.add(d.id)
+                }
+                for (d in personalFM4.data) {
+                    musicList.add(d.id)
+                }
+                for (d in personalFM5.data) {
+                    musicList.add(d.id)
+                }
+                for (d in personalFM6.data) {
+                    musicList.add(d.id)
+                }
+                Result.success(musicList)
+            } else {
+                Result.failure(RuntimeException("response code is ${personalFM1.code} and " +
+                        "${personalFM2.code} and ${personalFM3.code} and " +
+                        "${personalFM4.code} and ${personalFM5.code} and ${personalFM6.code}"))
+            }
+        }
+    }
+
+    private suspend fun get3PersonalFM(timestamp: Long) = M2MMusicNetwork.getPersonalFM(timestamp)
+
+    /**
      * 获取本地Music资源
      */
     /*fun getLocalMusic(id: Long): Music?{
@@ -242,7 +300,7 @@ object Repository {
     fun getOnlineMusic(id: ArrayList<Long>) = fire(Dispatchers.IO) {
         coroutineScope {
             val timestamp = TimeUtil.getTimestamp()
-            val musiclist = ArrayList<Music>()
+            val musicList = ArrayList<Music>()
             val ids = id.toString().replace(" ", "")
                 .replace("[", "").replace("]", "")
             val musicDetailResponse = async { getDetailOfSong(ids, timestamp) }
@@ -252,12 +310,21 @@ object Repository {
             val url = musicUrlResponse.await()
             LogUtil.e(TAG, url.toString())
             if (detail.code == SUCCESS_CODE) {
-                for (i in (0 until (detail.songs.size))) {
+                val detailHashMap = LinkedHashMap<Long, SongResponse.Song>()
+                val urlHashMap = HashMap<Long, UrlOfSongResponse.Data>()
+                detail.songs.forEach {
+                    detailHashMap[it.id] = it
+                }
+                url.data.forEach {
+                    urlHashMap[it.id] = it
+                }
+                for (entry in detailHashMap) {
+                    val urlData = urlHashMap[entry.key]
                     val music = Music(
                         0,
-                        id[i],
-                        detail.songs[i].name,
-                        detail.songs[i].ar.run {
+                        entry.key,
+                        entry.value.name,
+                        entry.value.ar.run {
                             var a = this.size - 1
                             val artists: StringBuilder = StringBuilder(this[a].name)
                             for (artist in this) {
@@ -268,16 +335,16 @@ object Repository {
                             }
                             artists.toString()
                         },
-                        detail.songs[i].al.picUrl,
+                        entry.value.al.picUrl,
                         0L,
-                        detail.songs[i].al.name,
-                        0,
-                        url.data[i].url
+                        entry.value.al.name,
+                        0L,
+                        urlData?.url ?: ""
                     )
-                    musiclist.add(music)
+                    musicList.add(music)
                 }
-                LogUtil.e(TAG, "Musiclist: $musiclist")
-                Result.success(musiclist)
+                LogUtil.e(TAG, "Musiclist: $musicList")
+                Result.success(musicList)
             } else {
                 Result.failure(RuntimeException("response code is ${detail.code}"))
             }
@@ -364,7 +431,7 @@ object Repository {
     /**
      * 获取搜索建议
      */
-    fun getSearchSuggest(keywords:String, timestamp: Long) = fire(Dispatchers.IO) {
+    fun getSearchSuggest(keywords: String, timestamp: Long) = fire(Dispatchers.IO) {
         val searchSuggestResponse = M2MMusicNetwork.getSearchSuggest(keywords, timestamp)
         if (searchSuggestResponse.code == SUCCESS_CODE) {
             Result.success(searchSuggestResponse.result.allMatch)

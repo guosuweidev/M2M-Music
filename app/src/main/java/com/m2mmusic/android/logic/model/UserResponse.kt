@@ -102,8 +102,8 @@ data class UserRecordResponse(
  * ids数组实际只有一项ids[0]
  */
 data class UserLikeListResponse(
-    val code:Int,
-    val ids:List<String>        // 用户喜欢音乐id列表，可直接拿去申请Music信息
+    val code: Int,
+    val ids: List<String>        // 用户喜欢音乐id列表，可直接拿去申请Music信息
 )
 
 /**
@@ -137,3 +137,17 @@ data class UserPlayListResponse(
 data class SubscribePlayListResponse(
     val code: Int
 )
+
+/**
+ * 私人FM
+ * 需要登录
+ * 每次申请3首
+ */
+data class PersonalFMResponse(
+    val code: Int,
+    val data: List<PFM>
+) {
+    data class PFM(
+        val id: Long
+    )
+}

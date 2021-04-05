@@ -25,7 +25,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ic_fm"
+                    android:id="@+id/iv_fm"
                     android:layout_width="37dp"
                     android:layout_height="37dp"
                     android:layout_marginTop="10dp"
@@ -42,7 +42,7 @@
                     android:text="私人FM"
                     android:fontFamily="@font/zhuzia_sleek"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/ic_fm"
+                    app:layout_constraintTop_toBottomOf="@id/iv_fm"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +106,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ic_selection_library"
+                    android:id="@+id/iv_selection_library"
                     android:layout_width="37dp"
                     android:layout_height="37dp"
                     android:layout_marginTop="10dp"
@@ -123,7 +123,7 @@
                     android:text="精选歌单"
                     android:fontFamily="@font/zhuzia_sleek"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/ic_selection_library"
+                    app:layout_constraintTop_toBottomOf="@id/iv_selection_library"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -140,7 +140,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ic_board"
+                    android:id="@+id/iv_board"
                     android:layout_width="37dp"
                     android:layout_height="37dp"
                     android:layout_marginTop="10dp"
@@ -157,7 +157,7 @@
                     android:text="排行榜"
                     android:fontFamily="@font/zhuzia_sleek"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/ic_board"
+                    app:layout_constraintTop_toBottomOf="@id/iv_board"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

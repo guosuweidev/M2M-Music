@@ -106,4 +106,13 @@ interface UserService {
         @Query("cookie") cookie: String,
         @Query("timestamp") timestamp: Long
     ): Call<SubscribePlayListResponse>
+
+    /**
+     * 私人FM
+     */
+    @GET("personal_fm")
+    fun getPersonalFM(
+        @Query("cookie") cookie: String,
+        @Query("timestamp") timestamp: Long
+    ): Call<PersonalFMResponse>
 }

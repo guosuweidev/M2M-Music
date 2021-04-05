@@ -262,6 +262,7 @@ class MainActivity : BaseActivity() {
                 putExtra("is_play_activity", false)
             }
         }
+        // 滑动菜单头部的登录功能
         binding.navView.getHeaderView(0).findViewById<ImageView>(R.id.avatar).setOnClickListener {
             if (viewModel.isLogin.value == true) {
                 "「个人中心」待开发，敬请期待".showToast(this)

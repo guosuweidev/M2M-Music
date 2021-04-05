@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.m2mmusic.android.databinding.FragmentMainBinding
+import com.m2mmusic.android.databinding.ViewMainItemGridBinding
 import com.m2mmusic.android.logic.Repository
 import com.m2mmusic.android.logic.model.RecommendPlaylistsResponse.Result
 import com.m2mmusic.android.logic.model.NewResourcesResponse.Creative
@@ -41,6 +42,7 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
     private var _binding: FragmentMainBinding? =
         null                                                                   // ViewBinding
     private val binding get() = _binding!!
+    private lateinit var gridBinding: ViewMainItemGridBinding
     private lateinit var newResourcesAdapter: MainNewAdapter          // 新歌、新碟、数字专辑Adapter
     private var newResources: ArrayList<Creative> =
         ArrayList()                                    // 作为返回结果的新歌、新碟、数字专辑列表
@@ -69,6 +71,7 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
     ): View? {
         LogUtil.e(TAG, "onCreateView")
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        gridBinding = ViewMainItemGridBinding.bind(binding.root)
         return binding.root
     }
 
@@ -81,6 +84,7 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         LogUtil.e(TAG, "onActivityCreated")
+        gridBinding.tvDay.text = TimeUtil.getCalendarDay()
         initRecommendList()
         initNewResources()
         registerNetworkState()
@@ -256,6 +260,39 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
             currentNewResTab = 2
             newResourcesAdapter.notifyDataSetChanged()
         }
+
+        gridBinding.apply {
+            // 私人FM
+            ivFm.setOnClickListener {
+                viewModel.getPersonalFM()
+                "私人FM启动，请稍等".showToast(context!!)
+            }
+            tvFm.setOnClickListener {
+                viewModel.getPersonalFM()
+                "私人FM启动，请稍等".showToast(context!!)
+            }
+            // 每日推荐
+            ivDailyRecommend.setOnClickListener {
+//                viewModel.getDailyRecommend()
+            }
+            tvDailyRecommend.setOnClickListener {
+//                viewModel.getDailyRecommend()
+            }
+            // 精选歌单
+            ivSelectionLibrary.setOnClickListener {
+                "「精选歌单」待开发，敬请期待".showToast(context!!)
+            }
+            tvSelectionLibrary.setOnClickListener {
+                "「精选歌单」待开发，敬请期待".showToast(context!!)
+            }
+            // 排行榜
+            ivBoard.setOnClickListener {
+                "「排行榜」待开发，敬请期待".showToast(context!!)
+            }
+            tvBoard.setOnClickListener {
+                "「排行榜」待开发，敬请期待".showToast(context!!)
+            }
+        }
     }
 
     /**
@@ -347,6 +384,30 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
                 newSonglist.add(it)
             }
             LogUtil.e(TAG, "NewSonglist$newSonglist")
+        }
+        // 观察私人FM
+        viewModel.personalFM.observe(viewLifecycleOwner) {
+            val result = it.getOrNull()
+            if (result != null) {
+                val ids = ArrayList<Long>()
+                ids.addAll(result)
+                viewModel.getPersonalFMList(ids)
+            }
+        }
+        // 观察私人FM列表
+        viewModel.personalFMList.observe(viewLifecycleOwner) {
+            val result = it.getOrNull()
+            if (result != null) {
+                (activity as MainActivity).viewModel.apply {
+                    setPlaylistEvent(
+                        PlaylistEvent(
+                            result,
+                            0,
+                            PlayMode.getDefault()
+                        )
+                    )
+                }
+            }
         }
     }
 

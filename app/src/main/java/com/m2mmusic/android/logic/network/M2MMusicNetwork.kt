@@ -61,6 +61,12 @@ object M2MMusicNetwork {
         userService.getUserPlayList(uid, Repository.getCookie(), timestamp).await()
 
     /**
+     * 私人FM
+     */
+    suspend fun getPersonalFM(timestamp: Long) =
+        userService.getPersonalFM(Repository.getCookie(), timestamp).await()
+
+    /**
      * 获取歌曲详情
      */
     suspend fun getDetailOfSong(ids: String, timestamp: Long) =
