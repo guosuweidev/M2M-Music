@@ -362,6 +362,66 @@ object Repository {
     }
 
     /**
+     * 获取搜索建议
+     */
+    fun getSearchSuggest(keywords:String, timestamp: Long) = fire(Dispatchers.IO) {
+        val searchSuggestResponse = M2MMusicNetwork.getSearchSuggest(keywords, timestamp)
+        if (searchSuggestResponse.code == SUCCESS_CODE) {
+            Result.success(searchSuggestResponse.result.allMatch)
+        } else {
+            Result.failure(RuntimeException("response code is ${searchSuggestResponse.code}"))
+        }
+    }
+
+    /**
+     * 搜索单曲
+     */
+    fun searchMusic(keywords: String, timestamp: Long) = fire(Dispatchers.IO) {
+        val searchMusicResponse = M2MMusicNetwork.searchMusic(keywords, timestamp)
+        if (searchMusicResponse.code == SUCCESS_CODE) {
+            Result.success(searchMusicResponse.result)
+        } else {
+            Result.failure(RuntimeException("response code is ${searchMusicResponse.code}"))
+        }
+    }
+
+    /**
+     * 搜索专辑
+     */
+    fun searchAlbum(keywords: String, timestamp: Long) = fire(Dispatchers.IO) {
+        val searchAlbumResponse = M2MMusicNetwork.searchAlbum(keywords, timestamp)
+        if (searchAlbumResponse.code == SUCCESS_CODE) {
+            Result.success(searchAlbumResponse.result)
+        } else {
+            Result.failure(RuntimeException("response code is ${searchAlbumResponse.code}"))
+        }
+    }
+
+    /**
+     * 搜索歌手
+     */
+    fun searchArtist(keywords: String, timestamp: Long) = fire(Dispatchers.IO) {
+        val searchArtistResponse = M2MMusicNetwork.searchArtist(keywords, timestamp)
+        if (searchArtistResponse.code == SUCCESS_CODE) {
+            Result.success(searchArtistResponse.result)
+        } else {
+            Result.failure(RuntimeException("response code is ${searchArtistResponse.code}"))
+        }
+    }
+
+    /**
+     * 搜索歌单
+     */
+    fun searchMusicList(keywords: String, timestamp: Long) = fire(Dispatchers.IO) {
+        val searchMusicListResponse = M2MMusicNetwork.searchMusicList(keywords, timestamp)
+        if (searchMusicListResponse.code == SUCCESS_CODE) {
+            Result.success(searchMusicListResponse.result)
+        } else {
+            Result.failure(RuntimeException("response code is ${searchMusicListResponse.code}"))
+        }
+    }
+
+    /**
      * 按照liveData()函数的参数接收标准定义的一个高阶函数
      * 简化网络回调
      */

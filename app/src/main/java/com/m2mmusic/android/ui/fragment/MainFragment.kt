@@ -216,6 +216,7 @@ class MainFragment : Fragment(), MainRecommendAdapter.OnItemClickListener,
             1 -> {
                 currentTime = TimeUtil.getTimestamp()
                 startActivity<AlbumActivity>(activity as MainActivity) {
+                    putExtra("fragment", TAG)
                     putExtra(
                         "new_album",
                         viewModel.newResourcesLists[(position / 3) + 2].resources[position % 3]

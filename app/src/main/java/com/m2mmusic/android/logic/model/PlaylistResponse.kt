@@ -76,7 +76,7 @@ data class RecommendPlaylistsResponse(
         val picUrl: String,                 // 封面链接
 //        val canDislike: Boolean,            // 是否已收藏，false表示未收藏
         val playCount: Long,                // 播放次数
-        val trackCount: Long                 // 歌曲数量
+        val trackCount: Int                 // 歌曲数量
     ) : Parcelable
 }
 
@@ -97,7 +97,7 @@ data class PlaylistDetailResponse(
         val coverImgUrl: String,    // 封面链接
         val createTime: Long,       // 创建时间，毫秒值
         val updateTime: Long,       // 修改时间，毫秒值
-        val trackCount: Long,        // 歌曲数量
+        val trackCount: Int,        // 歌曲数量
         val playCount: Long,         // 播放次数
         val description: String,    // 歌单描述
 //        @Ignore

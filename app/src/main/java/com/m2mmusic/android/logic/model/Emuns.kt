@@ -43,3 +43,18 @@ enum class PlayMode {
         }
     }
 }
+
+/**
+ * Created by 小小苏 at 2021/4/4
+ * 搜索类型
+ */
+enum class SearchType(val type: Int) {
+    MUSIC(1),       // 单曲
+    ALBUMS(10),     // 专辑
+    ARTIST(100),    // 艺术家
+    MUSICLIST(1000),    // 歌单
+    USER(1002),         // 用户
+    MUSICVIDEO(1004),   // MV
+    LYRIC(1006),        // 歌词
+    RADIO(1009)     // 电台
+}

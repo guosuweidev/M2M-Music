@@ -2,10 +2,7 @@ package com.m2mmusic.android.logic.network
 
 import com.m2mmusic.android.logic.Repository
 import com.m2mmusic.android.logic.model.UserLevelResponse
-import com.m2mmusic.android.logic.network.service.NewResourcesService
-import com.m2mmusic.android.logic.network.service.PlaylistService
-import com.m2mmusic.android.logic.network.service.SongService
-import com.m2mmusic.android.logic.network.service.UserService
+import com.m2mmusic.android.logic.network.service.*
 import com.m2mmusic.android.utils.LogUtil
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +18,7 @@ object M2MMusicNetwork {
     private val songService = ServiceCreator.create<SongService>()
     private val newResourcesService = ServiceCreator.create<NewResourcesService>()
     private val playlistService = ServiceCreator.create<PlaylistService>()
+    private val searchService = ServiceCreator.create<SearchService>()
 
     /**
      * 手机号登录
@@ -124,6 +122,36 @@ object M2MMusicNetwork {
             playlistService.getPlaylistDetailDynamic(id, Repository.getCookie(), timestamp).await()
         else
             playlistService.getPlaylistDetailDynamic(id, timestamp).await()
+
+    /**
+     * 获取搜索建议
+     */
+    suspend fun getSearchSuggest(keywords:String, timestamp: Long) =
+        searchService.getSearchSuggest(keywords, "mobile", timestamp).await()
+
+    /**
+     * 搜索专辑
+     */
+    suspend fun searchAlbum(keywords: String, timestamp: Long) =
+        searchService.searchAlbum(keywords, 10, timestamp).await()
+
+    /**
+     * 搜索歌手
+     */
+    suspend fun searchArtist(keywords: String, timestamp: Long) =
+        searchService.searchArtist(keywords, 100, timestamp).await()
+
+    /**
+     * 搜索歌单
+     */
+    suspend fun searchMusicList(keywords: String, timestamp: Long) =
+        searchService.searchMusicList(keywords, 1000, timestamp).await()
+
+    /**
+     * 搜索单曲
+     */
+    suspend fun searchMusic(keywords: String, timestamp: Long) =
+        searchService.searchMusic(keywords, 1, timestamp).await()
 
     /**
      * 自定义await()函数

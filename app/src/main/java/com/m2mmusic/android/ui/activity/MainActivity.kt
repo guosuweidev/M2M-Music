@@ -200,9 +200,8 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> binding.drawerLayout.openDrawer(GravityCompat.START)
+            R.id.search -> startActivity<SearchActivity>(this) {}   // 跳转SearchActivity
         }
-        // 跳转SearchActivity
-
         return true
     }
 
@@ -297,7 +296,8 @@ class MainActivity : BaseActivity() {
                 viewModel.getUserProfile()
                 binding.navView.getHeaderView(0).apply {
                     findViewById<TextView>(R.id.nickname).text = viewModel.profile!!.nickname
-                    Glide.with(this@MainActivity).load(viewModel.profile!!.avatarUrl)
+                    Glide.with(this@MainActivity)
+                        .load(viewModel.profile!!.avatarUrl + "?param=300y300")
                         .into(findViewById(R.id.avatar))
                     Glide.with(this@MainActivity).load(viewModel.profile!!.backgroundUrl).apply(
                         RequestOptions.bitmapTransform(BlurTransformation(this@MainActivity, 25, 2))

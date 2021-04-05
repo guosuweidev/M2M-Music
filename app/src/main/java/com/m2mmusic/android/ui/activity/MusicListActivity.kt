@@ -40,6 +40,7 @@ class MusicListActivity : BaseActivity(), MusicListAdapter.OnItemClickListener {
         when(intent.getStringExtra("which_fragment")) {
             "MainFragment" -> {}
             "MyFragment" -> binding.like.visibility = View.GONE
+            "SearchFragment" -> {}
         }
         musicList = intent.getParcelableExtra("music_list") as Result
 

@@ -14,6 +14,7 @@ import com.m2mmusic.android.logic.model.Music
 import com.m2mmusic.android.logic.model.PlayMode
 import com.m2mmusic.android.ui.service.PlayService
 import com.m2mmusic.android.utils.LogUtil
+import com.m2mmusic.android.utils.showToast
 import com.m2mmusic.android.utils.startActivity
 import java.util.*
 
@@ -182,6 +183,9 @@ class MusicPlayActivity : BaseActivity() {
             }
 
         })
+        binding.playLike.setOnClickListener {
+            "「喜爱歌曲」待开发，敬请期待".showToast(this)
+        }
     }
 
     private fun updatePlayMode() {

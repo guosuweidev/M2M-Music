@@ -2,7 +2,6 @@ package com.m2mmusic.android.ui.activity
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -25,7 +24,8 @@ class AlbumActivity : BaseActivity(), MusicListAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityMusicListBinding
     private lateinit var viewModel: AlbumActivityViewModel
-    private lateinit var album: NewResourcesResponse.Resource
+    private lateinit var new_album: NewResourcesResponse.Resource
+    private lateinit var search_album: SearchAlbumResponse.AlbumsResult.AlbumResult
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +34,24 @@ class AlbumActivity : BaseActivity(), MusicListAdapter.OnItemClickListener {
         setSupportActionBar(binding.musicListToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel = ViewModelProvider(this)[AlbumActivityViewModel::class.java]
-        album = intent.getParcelableExtra("new_album") as NewResourcesResponse.Resource
-        binding.collapsingToolbar.apply {
-            title = album.uiElement.mainTitle.title
-            setCollapsedTitleTextAppearance(R.style.toolbar_collapsing_title_textStyle)
-            setExpandedTitleTextAppearance(R.style.toolbar_expend_title_textStyle)
+        val fragment = intent.getStringExtra("fragment")
+        if (fragment.equals("MainFragment")) {
+            new_album = intent.getParcelableExtra("new_album") as NewResourcesResponse.Resource
+            binding.collapsingToolbar.apply {
+                title = new_album.uiElement.mainTitle.title
+                setCollapsedTitleTextAppearance(R.style.toolbar_collapsing_title_textStyle)
+                setExpandedTitleTextAppearance(R.style.toolbar_expend_title_textStyle)
+            }
+            viewModel.getAlbumDetail(new_album.resourceId.toLong())
+        } else {
+            search_album = intent.getParcelableExtra("search_album") as SearchAlbumResponse.AlbumsResult.AlbumResult
+            binding.collapsingToolbar.apply {
+                title = search_album.name
+                setCollapsedTitleTextAppearance(R.style.toolbar_collapsing_title_textStyle)
+                setExpandedTitleTextAppearance(R.style.toolbar_expend_title_textStyle)
+            }
+            viewModel.getAlbumDetail(search_album.id.toLong())
         }
-
         val layoutManager = LinearLayoutManager(this)
         binding.musicList.layoutManager = layoutManager
         val adapter = MusicListAdapter(viewModel.musicList)
@@ -53,7 +64,6 @@ class AlbumActivity : BaseActivity(), MusicListAdapter.OnItemClickListener {
             onMusicUpdated(viewModel.music)
         }
         // 观察专辑详情Response
-        viewModel.getAlbumDetail(album.resourceId.toLong())
         viewModel.albumDetail.observe(this) {
             val result = it.getOrNull()
             if (result != null) {

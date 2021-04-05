@@ -27,7 +27,6 @@ class MusicListActivityViewModel : ViewModel() {
     private var mBinder: PlayService.PlayBinder? = null            // IBinder对象
     val currentMusic: LiveData<Repository.CurrentMusic>            // 当前Music及播放状态
     var music: Repository.CurrentMusic? = null
-
     @SuppressLint("StaticFieldLeak")
     private var playService: PlayService? = null
     val musicList = ArrayList<Music>()

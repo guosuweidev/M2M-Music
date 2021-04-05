@@ -87,7 +87,7 @@ dependencies {
     implementation 'com.github.florent37:glidepalette:2.1.2'
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
 
-    // 获取在线音乐shichang
+    // 获取在线音乐时长
     implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-core:1.0.15'
     implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-native:1.0.15'
 

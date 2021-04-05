@@ -99,7 +99,7 @@ class MyFragment : Fragment(), UserMusicListAdapter.OnItemClickListener {
             viewModel.getUserProfile()
             binding.apply {
                 nickname.text = viewModel.profile!!.nickname
-                Glide.with(this@MyFragment).load(viewModel.profile!!.avatarUrl)
+                Glide.with(this@MyFragment).load(viewModel.profile!!.avatarUrl + "?param=300y300")
                     .into(avatar)
                 Glide.with(this@MyFragment).load(viewModel.profile!!.backgroundUrl).apply(
                     RequestOptions.bitmapTransform(
@@ -166,8 +166,8 @@ class MyFragment : Fragment(), UserMusicListAdapter.OnItemClickListener {
                 myLikeMusicSecond.visibility = View.VISIBLE
             }
             Glide.with(this).apply {
-                load(viewModel.userLikeList[0].album).into(binding.myLikeMusicFirst)
-                load(viewModel.userLikeList[1].album).into(binding.myLikeMusicSecond)
+                load(viewModel.userLikeList[0].album + "?param=300y300").into(binding.myLikeMusicFirst)
+                load(viewModel.userLikeList[1].album + "?param=300y300").into(binding.myLikeMusicSecond)
             }
             binding.myLikeMusic.setOnClickListener {
                 startActivity<MyLikeListActivity>(activity as Activity) {
