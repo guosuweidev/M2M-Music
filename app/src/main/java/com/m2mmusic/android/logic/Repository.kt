@@ -371,7 +371,7 @@ object Repository {
     fun getNewResources(timestamp: Long) = fire(Dispatchers.IO) {
         val newResourcesResponse = M2MMusicNetwork.getNewResources(timestamp)
         if (newResourcesResponse.code == SUCCESS_CODE) {
-            val result = newResourcesResponse.data.blocks[7].creatives
+            val result = newResourcesResponse.data.blocks[3].creatives
             Result.success(result)
         } else {
             Result.failure(RuntimeException("response code is ${newResourcesResponse.code}"))
