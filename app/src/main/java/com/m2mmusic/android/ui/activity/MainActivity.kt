@@ -31,6 +31,7 @@ import com.m2mmusic.android.ui.adapter.MainViewPagerAdapter
 import com.m2mmusic.android.ui.fragment.MainFragment
 import com.m2mmusic.android.ui.fragment.MyFragment
 import com.m2mmusic.android.utils.*
+import com.m2mmusic.android.weex.intent.WXPageActivity
 
 /**
  * Created by 小小苏
@@ -153,6 +154,10 @@ class MainActivity : BaseActivity() {
                     // 退出APP
                     viewModel.stopService()
                     ActivityCollector.finishAll()
+                }
+                R.id.nav_weex_test -> {
+                    // Weex 测试
+                    startActivity<WXPageActivity>(this) {}
                 }
             }
             binding.drawerLayout.closeDrawers()

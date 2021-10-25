@@ -28,6 +28,11 @@
             android:icon="@drawable/ic_info"
             android:title="@string/About" />
 
+        <item
+            android:id="@+id/nav_weex_test"
+            android:icon="@drawable/ic_weex_test"
+            android:title="@string/weex_test" />
+
     </group>
 
 </menu>

@@ -3,6 +3,9 @@ package com.m2mmusic.android.application
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.m2mmusic.android.weex.extend.ImageLoaderAdapter
+import com.taobao.weex.InitConfig
+import com.taobao.weex.WXSDKEngine
 
 /**
  * 获取全局Context
@@ -20,7 +23,11 @@ class M2MMusicApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-    }
 
+        val config: InitConfig = InitConfig.Builder()
+            .setImgAdapter(ImageLoaderAdapter())
+            .build()
+        WXSDKEngine.initialize(this, config);
+    }
 
 }

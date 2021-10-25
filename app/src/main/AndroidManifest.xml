@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M2MMusic"
         android:usesCleartextTraffic="true">
+        <activity android:name=".weex.intent.WXPageActivity"></activity>
         <activity android:name=".ui.activity.AboutActivity" />
         <activity android:name=".ui.activity.DailyRecommendActivity" />
         <activity android:name=".ui.activity.MyLikeListActivity" />
@@ -41,8 +42,7 @@
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"></activity>
 
         <service
             android:name=".ui.service.PlayService"

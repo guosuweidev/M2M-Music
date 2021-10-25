@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# For weex sdk and fastjson
+-keep class com.taobao.weex.bridge.** { *; }
+-keep class com.taobao.weex.layout.** { *; }
+-keep class com.taobao.weex.WXSDKEngine { *; }
+-keep class com.taobao.weex.base.SystemMessageHandler { *; }
+-dontwarn com.taobao.weex.bridge.**

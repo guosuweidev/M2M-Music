@@ -100,6 +100,13 @@ dependencies {
     // 关于 页面
     implementation 'com.github.medyo:android-about-page:1.3.1'
 
+    // weex sdk and fastjson
+    implementation 'com.taobao.android:weex_sdk:0.26.0'
+    implementation 'com.alibaba:fastjson:1.2.75'
+
+    // weex devtools
+    implementation 'com.taobao.android:weex_inspector:0.24.2.4'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

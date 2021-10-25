@@ -7,6 +7,7 @@
     <string name="DarkMode">夜间模式</string>
     <string name="TimeToClose">定时关闭</string>
     <string name="About">关于M2M音乐</string>
+    <string name="weex_test">Weex测试</string>
     <string name="Logout">退出登录</string>
     <string name="Exit">关闭程序</string>
     <string name="titleofnewsong">名称</string>
